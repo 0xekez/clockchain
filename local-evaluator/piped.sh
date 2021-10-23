@@ -1,0 +1,1 @@
+cat ../assembler/examples/fib.bc | ../assembler/target/debug/assembler | ./target/release/local-evaluator

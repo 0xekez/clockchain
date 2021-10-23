@@ -1,0 +1,18 @@
+	pi 10
+	call fib
+	exit
+fib:
+	copy
+	pi 2
+	jlt done
+	copy
+	pi 1
+	sub
+	call fib
+	rot 1
+	pi 2
+	sub
+	call fib
+	add
+done:
+	ret
