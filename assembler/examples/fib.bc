@@ -3,7 +3,7 @@
 	exit
 fib:
 	copy
-	pi 2
+	pi 3
 	jlt done
 	copy
 	pi 1
