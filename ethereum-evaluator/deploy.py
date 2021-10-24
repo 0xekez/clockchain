@@ -4,6 +4,7 @@ import sys
 import json
 
 contract = sys.argv[1]
+
 os.system(f"solc --overwrite --bin ethereum-evaluator/{contract}.sol -o ethereum-evaluator/build")
 os.system(f"solc --overwrite --abi ethereum-evaluator/{contract}.sol -o ethereum-evaluator/build")
 

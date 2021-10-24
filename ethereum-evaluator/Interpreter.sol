@@ -1,18 +1,11 @@
+//SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^ 0.8 .7;
 
 
 contract Interpreter {
     constructor() {}
 
-    function toint32(uint8[] memory _bytes, uint32 i)
-    internal
-    pure
-    returns(int32 value) {
-
-        assembly {
-            value := mload(add(_bytes, i))
-        }
-    }
     struct InterpreterState {
         uint32 pc;
         uint32[1024] callstack;
@@ -32,10 +25,12 @@ contract Interpreter {
         while (true) {
             uint32 inst_start = (state.pc * 5);
             uint8 opcode = code[inst_start];
-            int32 immediate = toint32(code, inst_start + 1);
+            int32 immediate = int32(uint32(code[inst_start + 1]) << 0 |
+                 uint32(code[inst_start + 2]) << 8 |
+                 uint32(code[inst_start + 3]) << 16 |
+                 uint32(code[inst_start + 4]) << 24);
             uint256 last = 0;
             if (state.stack_length > 0) last = state.stack_length - 1;
-            emit log(block.timestamp, int32(uint32(100+opcode)));
 
             if (opcode == 1) {
                 state.stack[state.stack_length] = immediate;

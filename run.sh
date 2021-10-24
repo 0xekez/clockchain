@@ -13,6 +13,14 @@ case $1 in
 	    | ./assembler/target/debug/assembler \
 	    | (cd solana-evaluator/ ; ./run.sh client)
 	;;
+	build-ethereum)
+	(python3 ethereum-evaluator/deploy.py Interpreter)
+	;;
+    run-ethereum)
+	cat assembler/examples/fib.bc \
+	    | ./assembler/target/debug/assembler \
+	    | python3 ethereum-evaluator/exec.py Interpreter execute 
+	;;
     run-local)
 	cat assembler/examples/fib.bc \
 	    | ./assembler/target/debug/assembler \

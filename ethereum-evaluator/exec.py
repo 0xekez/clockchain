@@ -5,6 +5,7 @@ import json
 
 contract = sys.argv[1]
 function = sys.argv[2]
+
 code = sys.stdin.buffer.read().hex()
 codestr = "[" + ",".join([f'"0x{code[i*2:i*2+2]}"' for i in range(len(code)//2)]) + "]"
 
@@ -21,7 +22,7 @@ var instance = contract.at("{addr}")
 
 instance.log(function(error, result){{
     if (!error) {{
-        console.log("result",JSON.stringify(result));
+        console.log(result.args.time, result.args.b);
     }}
 }});
 var x = instance.{function}({codestr if code else ""});
@@ -33,4 +34,4 @@ wait();
 """
 with open("tmp.js","w") as f: f.write(jsscript)
 os.system(f"geth --goerli js tmp.js 2>>ethereum-evaluator/build/debug.log")
-#os.system("rm tmp.js")
+os.system("rm tmp.js")
