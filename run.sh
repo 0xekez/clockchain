@@ -26,6 +26,14 @@ case $1 in
 	    | ./assembler/target/debug/assembler \
 	    | ./local-evaluator/target/release/local-evaluator
 	;;
+    build-workers)
+	echo "nothing to do. make sure the current workers deploy is up to date."
+	;;
+    run-workers)
+	cat assembler/examples/fib.bc \
+	    | ./assembler/target/debug/assembler \
+	    | ./workers-evaluator/client.sh
+	;;
     *)
 	echo "usage: $0 <build|run>"
 	;;
