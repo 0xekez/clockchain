@@ -3,7 +3,7 @@
 case $1 in
     build-local)
 	(cd assembler/ ; cargo build)
-	(cd local-evaluator/ ; cargo build)
+	(cd local-evaluator/ ; cargo build --release)
 	;;
     build-solana)
 	(cd solana-evaluator/ ; ./run.sh build)
