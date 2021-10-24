@@ -221,3 +221,10 @@ Immediate values are encoded in little endian format.
 
 I've put together a reference Arcesco runtime in
 `local-evaluator/src/main.rs`.
+
+## Ethereum Impletmentation
+
+- Dependencies: solc, geth
+- Build: ./run.sh build-ethereum
+- Run: ./run.sh run-ethereum
+
