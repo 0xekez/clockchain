@@ -15,10 +15,19 @@ eth.defaultAccount = "{auth["account"]}"
 
 var contract = eth.contract({a})
 var instance = contract.at("{addr}")
-instance.methods.getResult().call(function(err,res){{
-    console.log(res);
+
+instance.log(function(error, result){{
+    if (!error) {{
+        console.log("result",JSON.stringify(result));
+    }}
 }});
+var x = instance.getResult();
+function wait()  {{
+    setTimeout(wait,100000)
+}}
+wait();
+
 """
 with open("tmp.js","w") as f: f.write(jsscript)
-os.system(f"geth --goerli js build/{contract}.js 2>>build/debug.log")
+os.system(f"geth --goerli js tmp.js 2>>build/debug.log")
 #os.system("rm tmp.js")

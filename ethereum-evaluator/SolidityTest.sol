@@ -1,11 +1,14 @@
 pragma solidity ^0.8.7;
 contract SolidityTest {
-   constructor() public{
+   constructor() {
    }
-   function getResult() public view returns(uint){
+
+   event log (uint i);
+   function getResult() public payable {
       uint a = 1;
       uint b = 2;
       uint result = a + b;
-      return result;
+      emit log(result);
+      //return result;
    }
 }
