@@ -1,6 +1,6 @@
 # Clockchain
 
-Clockchain is a system for benchmarking smart contract execution times
+Clockchain is a research tool for benchmarking smart contract execution times
 across blockchains using Arcesco-- a block-chain agnostic instruction set.
 
 It consists of three parts:
@@ -30,6 +30,8 @@ In this way Clockchain presents a unified, extenable interface for
 benchmarking smart contract execution times. This repo also contains
 implementations of evaluators in the three most popular smart-contract
 platforms: Ethereum, Solana, and Polkadot.
+
+![Diagram](diagram.png?raw=true "Diagram")
 
 ## An Example Program
 
