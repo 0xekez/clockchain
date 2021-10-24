@@ -1,0 +1,16 @@
+	pi 2
+	call init
+	exit
+init:
+	copy
+	pi 1
+	sub
+	copy
+	pi 0
+	jgt init
+thrash:
+	rot 1
+	rot 1
+	pi 1
+	jneq thrash
+	ret

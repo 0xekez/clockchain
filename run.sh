@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PROGRAM="thrash.bc"
+
 case $1 in
     build-local)
 	(cd assembler/ ; cargo build)
@@ -9,7 +11,7 @@ case $1 in
 	(cd solana-evaluator/ ; ./run.sh build)
 	;;
     run-solana)
-	cat assembler/examples/fib.bc \
+	cat assembler/examples/$PROGRAM \
 	    | ./assembler/target/debug/assembler \
 	    | (cd solana-evaluator/ ; ./run.sh client)
 	;;
@@ -17,12 +19,12 @@ case $1 in
 	(python3 ethereum-evaluator/deploy.py Interpreter)
 	;;
     run-ethereum)
-	cat assembler/examples/fib.bc \
+	cat assembler/examples/$PROGRAM \
 	    | ./assembler/target/debug/assembler \
-	    | python3 ethereum-evaluator/exec.py Interpreter execute 
+	    | python3 ethereum-evaluator/exec.py Interpreter execute
 	;;
     run-local)
-	cat assembler/examples/fib.bc \
+	cat assembler/examples/$PROGRAM \
 	    | ./assembler/target/debug/assembler \
 	    | ./local-evaluator/target/release/local-evaluator
 	;;
@@ -30,7 +32,7 @@ case $1 in
 	echo "nothing to do. make sure the current workers deploy is up to date."
 	;;
     run-workers)
-	cat assembler/examples/fib.bc \
+	cat assembler/examples/$PROGRAM \
 	    | ./assembler/target/debug/assembler \
 	    | ./workers-evaluator/client.sh
 	;;
