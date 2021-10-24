@@ -1,7 +1,7 @@
-# Arcesco
+# Clockchain
 
-Arcesco is a system for benchmarking smart contract execution times
-across blockchains.
+Clockchain is a research tool for benchmarking smart contract execution times
+across blockchains using Arcesco-- a block-chain agnostic instruction set.
 
 It consists of three parts:
 
@@ -26,10 +26,14 @@ such all invocations are in the following form:
 cat fib.bc | assembler | executer
 ```
 
-In this way Arcesco presents a unified, extenable interface for
-benchmarking smart contract execution times.
+In this way Clockchain presents a unified, extenable interface for
+benchmarking smart contract execution times. This repo also contains
+implementations of evaluators in the three most popular smart-contract
+platforms: Ethereum, Solana, and Polkadot.
 
-## An example program
+![Diagram](diagram.png?raw=true "Diagram")
+
+## An Example Program
 
 Here is an example program computes the 10th fibonacci number:
 
@@ -72,7 +76,7 @@ cat assembler/examples/fib.bc \
     | ./local-evaluator/target/release/local-evaluator
 ```
 
-## The instruction set
+## The Instruction Set
 
 The Arcesco instruction set is composed of 17 instructions which
 operate on 32 bit signed integers. There are no other types in Arcesco
@@ -199,7 +203,7 @@ add
 ret
 ```
 
-## The bytecode
+## The Bytecode
 
 Every Arcesco instruction is encoded into a 40 bit instruction the
 layout of which is as follows:
@@ -215,9 +219,10 @@ layout of which is as follows:
 instruction's immediate. Instructions without immediates are still
 this size but ignore the value in the immediate.
 
-Immediate values are encoded in little endian format.
+Immediate values are encoded in little endian format. For further
+documentation of the Arcesco instruction set, check out `assembler`.
 
-## Reference implementation
+## Reference Implementation
 
 I've put together a reference Arcesco runtime in
 `local-evaluator/src/main.rs`.
@@ -228,3 +233,14 @@ I've put together a reference Arcesco runtime in
 - Build: ./run.sh build-ethereum
 - Run: ./run.sh run-ethereum
 
+## Solana Impletmentation
+
+- Dependencies: see `solana-evaluator/README.md`
+- Build: ./run.sh build-solana
+- Run: ./run.sh run-solana
+
+## Polkadot Impletmentation
+
+- Dependencies: see `polka-evaluator/README.md`
+- We couldn't figure out how to run this outside of the polkadot UI,
+  so this requires a independent solution.
