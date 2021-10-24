@@ -1,0 +1,111 @@
+	pi 2000
+init:
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	copy
+	pi 80
+	sub
+	copy
+	pi 0
+	jgt init
+thrash_init:
+	pi 1
+thrash:
+	copy
+	pi 2
+	mod
+	pi 0
+	jgt thrash_one
+	jump thrash_zero
+thrash_end:
+	pi 1
+	sub
+	copy
+	pi 0
+	jgt thrash
+	exit
+thrash_one:
+	rot 2
+	jump thrash_end
+thrash_zero:
+	rot 255
+	jump thrash_end
