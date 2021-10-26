@@ -11,14 +11,17 @@ case $1 in
 	rm -rf slow-search-programs
 	mkdir slow-search-programs
 	REPS="$2"
-	for i in {1..$REPS}
+	rm times
+	touch times
+	for i in $(seq 1 $REPS)
 	do
-	    cargo run > generated.bc
-	    ./run.sh time-program generated.bc > time
+	    cargo run > generated.bc 2>/dev/null
+	    ./run.sh time-program-solana generated.bc >> times 2>/dev/null
 	    mkdir slow-search-programs/$i
 	    mv generated.bc slow-search-programs/$i
-	    mv time slow-search-programs$i
 	done
+	LOWEST=$(cat times | sort -n | tail -1)
+	grep -n $LOWEST times
 	;;
     *)
 	echo "usage: $0 <slow-search | time-program-solana> <reps | program>"

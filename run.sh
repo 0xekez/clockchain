@@ -1,21 +1,27 @@
 #!/bin/bash
 
-PROGRAM="thrash.bc"
+PROGRAM="long.bc"
 
 case $1 in
     build-local)
 	(cd assembler/ ; cargo build)
 	(cd local-evaluator/ ; cargo build --release)
+	(cd program-generator/ ; cargo build)
 	;;
     build-solana)
 	(cd solana-evaluator/ ; ./run.sh build)
 	;;
     run-solana)
-	cat assembler/examples/$PROGRAM \
+	cat assembler/examples/long.bc \
 	    | ./assembler/target/debug/assembler \
 	    | (cd solana-evaluator/ ; ./run.sh client)
 	;;
-	build-ethereum)
+    generate-and-run-solana)
+	./program-generator/target/debug/program-generator \
+	    | ./assembler/target/debug/assembler \
+	    | (cd solana-evaluator/ ; ./run.sh client)
+	;;
+    build-ethereum)
 	(python3 ethereum-evaluator/deploy.py Interpreter)
 	;;
     run-ethereum)
