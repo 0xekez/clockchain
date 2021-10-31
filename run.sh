@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROGRAM="long.bc"
+PROGRAM="fib.bc"
 
 case $1 in
     build-local)
@@ -33,6 +33,15 @@ case $1 in
 	cat assembler/examples/$PROGRAM \
 	    | ./assembler/target/debug/assembler \
 	    | ./local-evaluator/target/release/local-evaluator
+	;;
+    build-cosmwasm)
+	(cd cosmwasm-evaluator/ ; ./run.sh small-build)
+	(cd cosmwasm-evaluator/ ; ./run.sh deploy) | tail -1 > cosmwasm-evaluator/contract-address
+	;;
+    run-cosmwasm)
+	cat assembler/examples/$PROGRAM \
+	    | ./assembler/target/debug/assembler \
+	    | cosmwasm-evaluator/run.sh execute $(cat cosmwasm-evaluator/contract-address)
 	;;
     build-workers)
 	echo "nothing to do. make sure the current workers deploy is up to date."

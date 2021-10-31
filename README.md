@@ -230,17 +230,23 @@ I've put together a reference Arcesco runtime in
 ## Ethereum Impletmentation
 
 - Dependencies: solc, geth
-- Build: ./run.sh build-ethereum
-- Run: ./run.sh run-ethereum
+- Build: `./run.sh build-ethereum`
+- Run: `./run.sh run-ethereum`
 
 ## Solana Impletmentation
 
 - Dependencies: see `solana-evaluator/README.md`
-- Build: ./run.sh build-solana
-- Run: ./run.sh run-solana
+- Build: `./run.sh build-solana`
+- Run: `./run.sh run-solana`
 
 ## Polkadot Impletmentation
 
 - Dependencies: see `polka-evaluator/README.md`
 - We couldn't figure out how to run this outside of the polkadot UI,
   so this requires a independent solution.
+
+## CosmWasm Implementation
+
+- Dependencies: see `cosmwasm-evaluator/README.md`
+- Build `./run.sh build-cosmwasm`
+- Run `./run.sh run-cosmwasm`

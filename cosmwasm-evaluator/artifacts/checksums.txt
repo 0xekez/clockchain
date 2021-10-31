@@ -1,0 +1,1 @@
+820afb6981863f81be88fa44d0cbdb8ee169cc8a05dd36113d59155aeb211d91  cosmwasm_evaluator.wasm
